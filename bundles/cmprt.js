@@ -12420,10 +12420,51 @@ module.exports = __webpack_require__(406);
 /* 430 */,
 /* 431 */,
 /* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
+/* 433 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(434), __esModule: true };
+
+/***/ }),
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(436);
+module.exports = __webpack_require__(29).Object.keys;
+
+
+/***/ }),
+/* 435 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__(48);
+var core = __webpack_require__(29);
+var fails = __webpack_require__(79);
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
+
+/***/ }),
+/* 436 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(122);
+var $keys = __webpack_require__(171);
+
+__webpack_require__(435)('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
+
+
+/***/ }),
 /* 437 */,
 /* 438 */,
 /* 439 */,
@@ -12518,6 +12559,10 @@ this program. If not, see <https://www.apache.org/licenses/LICENSE-2.0>.
 */
 
 // Must use npm and babel to support IE11/Safari
+
+var _keys = __webpack_require__(433);
+
+var _keys2 = _interopRequireDefault(_keys);
 
 var _getIterator2 = __webpack_require__(268);
 
@@ -12809,7 +12854,7 @@ var fetchAggregateData = function () {
 
 var parseAllAggregateData = function () {
   var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(buildAggData, jsonData, viz) {
-    var vizData, byYearAM, byYearPM, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, entry, val, data, date, _date;
+    var vizData, byYearAM, byYearPM, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, entry, val, data, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, date, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, _date;
 
     return _regenerator2.default.wrap(function _callee5$(_context5) {
       while (1) {
@@ -12896,33 +12941,113 @@ var parseAllAggregateData = function () {
 
             // Push AM data
             data = [];
+            _iteratorNormalCompletion4 = true;
+            _didIteratorError4 = false;
+            _iteratorError4 = undefined;
+            _context5.prev = 36;
 
-            for (date in byYearAM) {
+            for (_iterator4 = (0, _getIterator3.default)((0, _keys2.default)(byYearAM).sort()); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              date = _step4.value;
+
               data.push({
                 date: date,
                 art: byYearAM[date]['Arterial'],
                 fwy: byYearAM[date]['Freeway']
               });
             }
+            _context5.next = 44;
+            break;
+
+          case 40:
+            _context5.prev = 40;
+            _context5.t1 = _context5['catch'](36);
+            _didIteratorError4 = true;
+            _iteratorError4 = _context5.t1;
+
+          case 44:
+            _context5.prev = 44;
+            _context5.prev = 45;
+
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+
+          case 47:
+            _context5.prev = 47;
+
+            if (!_didIteratorError4) {
+              _context5.next = 50;
+              break;
+            }
+
+            throw _iteratorError4;
+
+          case 50:
+            return _context5.finish(47);
+
+          case 51:
+            return _context5.finish(44);
+
+          case 52:
             buildAggData[viz]['AM'] = data;
 
             // Push PM data
             data = [];
-            for (_date in byYearPM) {
+            _iteratorNormalCompletion5 = true;
+            _didIteratorError5 = false;
+            _iteratorError5 = undefined;
+            _context5.prev = 57;
+            for (_iterator5 = (0, _getIterator3.default)((0, _keys2.default)(byYearPM).sort()); !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              _date = _step5.value;
+
               data.push({
                 date: _date,
                 art: byYearPM[_date]['Arterial'],
                 fwy: byYearPM[_date]['Freeway']
               });
             }
+            _context5.next = 65;
+            break;
+
+          case 61:
+            _context5.prev = 61;
+            _context5.t2 = _context5['catch'](57);
+            _didIteratorError5 = true;
+            _iteratorError5 = _context5.t2;
+
+          case 65:
+            _context5.prev = 65;
+            _context5.prev = 66;
+
+            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+              _iterator5.return();
+            }
+
+          case 68:
+            _context5.prev = 68;
+
+            if (!_didIteratorError5) {
+              _context5.next = 71;
+              break;
+            }
+
+            throw _iteratorError5;
+
+          case 71:
+            return _context5.finish(68);
+
+          case 72:
+            return _context5.finish(65);
+
+          case 73:
             buildAggData[viz]['PM'] = data;
 
-          case 38:
+          case 74:
           case 'end':
             return _context5.stop();
         }
       }
-    }, _callee5, this, [[7, 20, 24, 32], [25,, 27, 31]]);
+    }, _callee5, this, [[7, 20, 24, 32], [25,, 27, 31], [36, 40, 44, 52], [45,, 47, 51], [57, 61, 65, 73], [66,, 68, 72]]);
   }));
 
   return function parseAllAggregateData(_x3, _x4, _x5) {
@@ -12946,27 +13071,27 @@ var updateSliderData = function () {
             fetch(API_SERVER + data_view + '?select=date').then(function (resp) {
               return resp.json();
             }).then(function (jsonData) {
-              var _iteratorNormalCompletion7 = true;
-              var _didIteratorError7 = false;
-              var _iteratorError7 = undefined;
+              var _iteratorNormalCompletion10 = true;
+              var _didIteratorError10 = false;
+              var _iteratorError10 = undefined;
 
               try {
-                for (var _iterator7 = (0, _getIterator3.default)(jsonData), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                  var entry = _step7.value;
+                for (var _iterator10 = (0, _getIterator3.default)(jsonData), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                  var entry = _step10.value;
 
                   if (!datelist.includes(entry.date)) datelist.push(entry.date);
                 }
               } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                    _iterator7.return();
+                  if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                    _iterator10.return();
                   }
                 } finally {
-                  if (_didIteratorError7) {
-                    throw _iteratorError7;
+                  if (_didIteratorError10) {
+                    throw _iteratorError10;
                   }
                 }
               }
@@ -13020,7 +13145,7 @@ var VIZ_LIST = ['ASPD'];
 var VIZ_INFO = {
   ASPD: {
     TXT: 'Auto Level-of-Service (LOS)',
-    VIEW: 'inrix_mar20',
+    VIEW: 'inrix_rt_daily',
     METRIC: 'los_hcm85',
     METRIC_DESC: 'Level of Service',
     COLOR_BY_BINS: false,
@@ -13038,7 +13163,7 @@ var init_selectedViz = VIZ_LIST[0];
 var data_view = VIZ_INFO[init_selectedViz]['VIEW'];
 var selviz_metric = VIZ_INFO[init_selectedViz]['METRIC'];
 var selPeriod = 'AM';
-var aggdata_view = 'inrix_mar20_agg';
+var aggdata_view = 'inrix_rt_daily_agg';
 var aggdata_label = 'All Segments Combined';
 var selGeoId = void 0;
 
@@ -13090,27 +13215,27 @@ function drawMapSegments() {
   });
 
   var lookup = {};
-  var _iteratorNormalCompletion4 = true;
-  var _didIteratorError4 = false;
-  var _iteratorError4 = undefined;
+  var _iteratorNormalCompletion6 = true;
+  var _didIteratorError6 = false;
+  var _iteratorError6 = undefined;
 
   try {
-    for (var _iterator4 = (0, _getIterator3.default)(relevantRows), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-      var row = _step4.value;
+    for (var _iterator6 = (0, _getIterator3.default)(relevantRows), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+      var row = _step6.value;
 
       lookup[row.cmp_segid] = row;
     }
   } catch (err) {
-    _didIteratorError4 = true;
-    _iteratorError4 = err;
+    _didIteratorError6 = true;
+    _iteratorError6 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion4 && _iterator4.return) {
-        _iterator4.return();
+      if (!_iteratorNormalCompletion6 && _iterator6.return) {
+        _iterator6.return();
       }
     } finally {
-      if (_didIteratorError4) {
-        throw _iteratorError4;
+      if (_didIteratorError6) {
+        throw _iteratorError6;
       }
     }
   }
@@ -13118,13 +13243,13 @@ function drawMapSegments() {
   ;
 
   // update metric-colored segment data
-  var _iteratorNormalCompletion5 = true;
-  var _didIteratorError5 = false;
-  var _iteratorError5 = undefined;
+  var _iteratorNormalCompletion7 = true;
+  var _didIteratorError7 = false;
+  var _iteratorError7 = undefined;
 
   try {
-    for (var _iterator5 = (0, _getIterator3.default)(cleanSegments), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-      var segment = _step5.value;
+    for (var _iterator7 = (0, _getIterator3.default)(cleanSegments), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+      var segment = _step7.value;
 
       if (lookup[segment.cmp_segid]) {
         segment['metric'] = lookup[segment.cmp_segid][selviz_metric];
@@ -13133,16 +13258,16 @@ function drawMapSegments() {
       }
     }
   } catch (err) {
-    _didIteratorError5 = true;
-    _iteratorError5 = err;
+    _didIteratorError7 = true;
+    _iteratorError7 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion5 && _iterator5.return) {
-        _iterator5.return();
+      if (!_iteratorNormalCompletion7 && _iterator7.return) {
+        _iterator7.return();
       }
     } finally {
-      if (_didIteratorError5) {
-        throw _iteratorError5;
+      if (_didIteratorError7) {
+        throw _iteratorError7;
       }
     }
   }
@@ -13288,13 +13413,13 @@ function buildChartHtmlFromCmpData() {
     var metric_col = selviz_metric;
     if (selviz_metric == VIZ_INFO['ASPD']['METRIC']) metric_col = 'avg_speed';
 
-    var _iteratorNormalCompletion6 = true;
-    var _didIteratorError6 = false;
-    var _iteratorError6 = undefined;
+    var _iteratorNormalCompletion8 = true;
+    var _didIteratorError8 = false;
+    var _iteratorError8 = undefined;
 
     try {
-      for (var _iterator6 = (0, _getIterator3.default)(json), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-        var entry = _step6.value;
+      for (var _iterator8 = (0, _getIterator3.default)(json), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+        var entry = _step8.value;
 
         var val = Number(entry[metric_col]).toFixed(VIZ_INFO[app.selectedViz]['CHART_PREC']);
         if (val === 'NaN') continue;
@@ -13302,33 +13427,55 @@ function buildChartHtmlFromCmpData() {
         byYear[entry.date][entry.period] = val;
       }
     } catch (err) {
-      _didIteratorError6 = true;
-      _iteratorError6 = err;
+      _didIteratorError8 = true;
+      _iteratorError8 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion6 && _iterator6.return) {
-          _iterator6.return();
+        if (!_iteratorNormalCompletion8 && _iterator8.return) {
+          _iterator8.return();
         }
       } finally {
-        if (_didIteratorError6) {
-          throw _iteratorError6;
+        if (_didIteratorError8) {
+          throw _iteratorError8;
         }
       }
     }
 
-    for (var date in byYear) {
-      if (app.isAMActive) {
-        data.push({ date: date, period: byYear[date]['AM'] });
-      } else {
-        data.push({ date: date, period: byYear[date]['PM'] });
+    var _iteratorNormalCompletion9 = true;
+    var _didIteratorError9 = false;
+    var _iteratorError9 = undefined;
+
+    try {
+      for (var _iterator9 = (0, _getIterator3.default)((0, _keys2.default)(byYear).sort()), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+        var date = _step9.value;
+
+        if (app.isAMActive) {
+          data.push({ date: date, period: byYear[date]['AM'] });
+        } else {
+          data.push({ date: date, period: byYear[date]['PM'] });
+        }
+
+        // use the same scale for am/pm even though we only show one
+        if (byYear[date]['AM']) maxHeight = Math.max(maxHeight, byYear[date]['AM']);
+        if (byYear[date]['PM']) maxHeight = Math.max(maxHeight, byYear[date]['PM']);
       }
 
-      // use the same scale for am/pm even though we only show one
-      if (byYear[date]['AM']) maxHeight = Math.max(maxHeight, byYear[date]['AM']);
-      if (byYear[date]['PM']) maxHeight = Math.max(maxHeight, byYear[date]['PM']);
+      // scale ymax to either 30 or 70:
+    } catch (err) {
+      _didIteratorError9 = true;
+      _iteratorError9 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion9 && _iterator9.return) {
+          _iterator9.return();
+        }
+      } finally {
+        if (_didIteratorError9) {
+          throw _iteratorError9;
+        }
+      }
     }
 
-    // scale ymax to either 30 or 70:
     maxHeight = maxHeight <= 30 ? 30 : 70;
 
     // use maxHeight for ASPD and TSPD; use auto for other metrics

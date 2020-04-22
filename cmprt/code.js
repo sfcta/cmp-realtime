@@ -40,7 +40,7 @@ const VIZ_LIST = ['ASPD'];
 const VIZ_INFO = {
   ASPD: {
     TXT: 'Auto Level-of-Service (LOS)',
-    VIEW: 'inrix_mar20',
+    VIEW: 'inrix_rt_daily',
     METRIC: 'los_hcm85',
     METRIC_DESC: 'Level of Service',
     COLOR_BY_BINS: false,
@@ -58,7 +58,7 @@ let init_selectedViz = VIZ_LIST[0];
 let data_view = VIZ_INFO[init_selectedViz]['VIEW'];
 let selviz_metric = VIZ_INFO[init_selectedViz]['METRIC'];
 let selPeriod = 'AM';
-let aggdata_view = 'inrix_mar20_agg';
+let aggdata_view = 'inrix_rt_daily_agg';
 let aggdata_label = 'All Segments Combined';
 let selGeoId;
 
@@ -171,7 +171,7 @@ async function parseAllAggregateData(buildAggData, jsonData, viz) {
 
   // Push AM data
   let data = [];
-  for (let date in byYearAM) {
+  for (let date of Object.keys(byYearAM).sort()) {
     data.push({
       date: date,
       art: byYearAM[date]['Arterial'],
@@ -182,7 +182,7 @@ async function parseAllAggregateData(buildAggData, jsonData, viz) {
 
   // Push PM data
   data = [];
-  for (let date in byYearPM) {
+  for (let date of Object.keys(byYearPM).sort()) {
     data.push({
       date: date,
       art: byYearPM[date]['Arterial'],
@@ -407,7 +407,7 @@ function buildChartHtmlFromCmpData(json = null) {
       if (!byYear[entry.date]) byYear[entry.date] = {};
       byYear[entry.date][entry.period] = val;
     }
-    for (let date in byYear) {
+    for (let date of Object.keys(byYear).sort()) {
       if (app.isAMActive) {
         data.push({date: date, period: byYear[date]['AM']});
       } else {
