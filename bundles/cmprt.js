@@ -13495,7 +13495,8 @@ function buildChartHtmlFromCmpData() {
       xLabelAngle: 45,
       ykeys: ['period'],
       ymax: scale,
-      parseTime: false
+      parseTime: false,
+      pointSize: 2
     });
   } else {
     var ykey_tmp = void 0,
@@ -13514,7 +13515,8 @@ function buildChartHtmlFromCmpData() {
       xLabelAngle: 45,
       ykeys: ykey_tmp,
       ymax: 70,
-      parseTime: false
+      parseTime: false,
+      pointSize: 2
     });
   }
 }
