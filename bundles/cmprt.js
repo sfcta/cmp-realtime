@@ -12619,9 +12619,17 @@ var initialPrep = function () {
 
           case 18:
 
-            console.log('6 !!!');
+            console.log('6...');
+            _context.next = 21;
+            return fetchDiffData(diffdata_view);
 
-          case 19:
+          case 21:
+            _diffData = _context.sent;
+
+
+            console.log('7 !!!');
+
+          case 23:
           case 'end':
             return _context.stop();
         }
@@ -12852,13 +12860,52 @@ var fetchAggregateData = function () {
   };
 }();
 
-var parseAllAggregateData = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(buildAggData, jsonData, viz) {
-    var vizData, byYearAM, byYearPM, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, entry, val, data, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, date, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, _date;
-
+var fetchDiffData = function () {
+  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(diffdat_view) {
+    var url, resp;
     return _regenerator2.default.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
+          case 0:
+            url = API_SERVER + diffdat_view;
+            _context5.prev = 1;
+            _context5.next = 4;
+            return fetch(url);
+
+          case 4:
+            resp = _context5.sent;
+            _context5.next = 7;
+            return resp.json();
+
+          case 7:
+            return _context5.abrupt('return', _context5.sent);
+
+          case 10:
+            _context5.prev = 10;
+            _context5.t0 = _context5['catch'](1);
+
+            console.log('diff data error: ' + _context5.t0);
+
+          case 13:
+          case 'end':
+            return _context5.stop();
+        }
+      }
+    }, _callee5, this, [[1, 10]]);
+  }));
+
+  return function fetchDiffData(_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+var parseAllAggregateData = function () {
+  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(buildAggData, jsonData, viz) {
+    var vizData, byYearAM, byYearPM, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, entry, val, data, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, date, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, _date;
+
+    return _regenerator2.default.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             buildAggData[viz] = {};
 
@@ -12870,12 +12917,12 @@ var parseAllAggregateData = function () {
             _iteratorNormalCompletion3 = true;
             _didIteratorError3 = false;
             _iteratorError3 = undefined;
-            _context5.prev = 7;
+            _context6.prev = 7;
             _iterator3 = (0, _getIterator3.default)(vizData);
 
           case 9:
             if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
-              _context5.next = 18;
+              _context6.next = 18;
               break;
             }
 
@@ -12883,11 +12930,11 @@ var parseAllAggregateData = function () {
             val = Number(entry.metric).toFixed(VIZ_INFO[viz]['CHART_PREC']);
 
             if (!(val === 'NaN')) {
-              _context5.next = 14;
+              _context6.next = 14;
               break;
             }
 
-            return _context5.abrupt('continue', 15);
+            return _context6.abrupt('continue', 15);
 
           case 14:
             if (entry.period == 'AM') {
@@ -12900,42 +12947,42 @@ var parseAllAggregateData = function () {
 
           case 15:
             _iteratorNormalCompletion3 = true;
-            _context5.next = 9;
+            _context6.next = 9;
             break;
 
           case 18:
-            _context5.next = 24;
+            _context6.next = 24;
             break;
 
           case 20:
-            _context5.prev = 20;
-            _context5.t0 = _context5['catch'](7);
+            _context6.prev = 20;
+            _context6.t0 = _context6['catch'](7);
             _didIteratorError3 = true;
-            _iteratorError3 = _context5.t0;
+            _iteratorError3 = _context6.t0;
 
           case 24:
-            _context5.prev = 24;
-            _context5.prev = 25;
+            _context6.prev = 24;
+            _context6.prev = 25;
 
             if (!_iteratorNormalCompletion3 && _iterator3.return) {
               _iterator3.return();
             }
 
           case 27:
-            _context5.prev = 27;
+            _context6.prev = 27;
 
             if (!_didIteratorError3) {
-              _context5.next = 30;
+              _context6.next = 30;
               break;
             }
 
             throw _iteratorError3;
 
           case 30:
-            return _context5.finish(27);
+            return _context6.finish(27);
 
           case 31:
-            return _context5.finish(24);
+            return _context6.finish(24);
 
           case 32:
 
@@ -12944,7 +12991,7 @@ var parseAllAggregateData = function () {
             _iteratorNormalCompletion4 = true;
             _didIteratorError4 = false;
             _iteratorError4 = undefined;
-            _context5.prev = 36;
+            _context6.prev = 36;
 
             for (_iterator4 = (0, _getIterator3.default)((0, _keys2.default)(byYearAM).sort()); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
               date = _step4.value;
@@ -12955,38 +13002,38 @@ var parseAllAggregateData = function () {
                 fwy: byYearAM[date]['Freeway']
               });
             }
-            _context5.next = 44;
+            _context6.next = 44;
             break;
 
           case 40:
-            _context5.prev = 40;
-            _context5.t1 = _context5['catch'](36);
+            _context6.prev = 40;
+            _context6.t1 = _context6['catch'](36);
             _didIteratorError4 = true;
-            _iteratorError4 = _context5.t1;
+            _iteratorError4 = _context6.t1;
 
           case 44:
-            _context5.prev = 44;
-            _context5.prev = 45;
+            _context6.prev = 44;
+            _context6.prev = 45;
 
             if (!_iteratorNormalCompletion4 && _iterator4.return) {
               _iterator4.return();
             }
 
           case 47:
-            _context5.prev = 47;
+            _context6.prev = 47;
 
             if (!_didIteratorError4) {
-              _context5.next = 50;
+              _context6.next = 50;
               break;
             }
 
             throw _iteratorError4;
 
           case 50:
-            return _context5.finish(47);
+            return _context6.finish(47);
 
           case 51:
-            return _context5.finish(44);
+            return _context6.finish(44);
 
           case 52:
             buildAggData[viz]['AM'] = data;
@@ -12996,7 +13043,7 @@ var parseAllAggregateData = function () {
             _iteratorNormalCompletion5 = true;
             _didIteratorError5 = false;
             _iteratorError5 = undefined;
-            _context5.prev = 57;
+            _context6.prev = 57;
             for (_iterator5 = (0, _getIterator3.default)((0, _keys2.default)(byYearPM).sort()); !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
               _date = _step5.value;
 
@@ -13006,52 +13053,52 @@ var parseAllAggregateData = function () {
                 fwy: byYearPM[_date]['Freeway']
               });
             }
-            _context5.next = 65;
+            _context6.next = 65;
             break;
 
           case 61:
-            _context5.prev = 61;
-            _context5.t2 = _context5['catch'](57);
+            _context6.prev = 61;
+            _context6.t2 = _context6['catch'](57);
             _didIteratorError5 = true;
-            _iteratorError5 = _context5.t2;
+            _iteratorError5 = _context6.t2;
 
           case 65:
-            _context5.prev = 65;
-            _context5.prev = 66;
+            _context6.prev = 65;
+            _context6.prev = 66;
 
             if (!_iteratorNormalCompletion5 && _iterator5.return) {
               _iterator5.return();
             }
 
           case 68:
-            _context5.prev = 68;
+            _context6.prev = 68;
 
             if (!_didIteratorError5) {
-              _context5.next = 71;
+              _context6.next = 71;
               break;
             }
 
             throw _iteratorError5;
 
           case 71:
-            return _context5.finish(68);
+            return _context6.finish(68);
 
           case 72:
-            return _context5.finish(65);
+            return _context6.finish(65);
 
           case 73:
             buildAggData[viz]['PM'] = data;
 
           case 74:
           case 'end':
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5, this, [[7, 20, 24, 32], [25,, 27, 31], [36, 40, 44, 52], [45,, 47, 51], [57, 61, 65, 73], [66,, 68, 72]]);
+    }, _callee6, this, [[7, 20, 24, 32], [25,, 27, 31], [36, 40, 44, 52], [45,, 47, 51], [57, 61, 65, 73], [66,, 68, 72]]);
   }));
 
-  return function parseAllAggregateData(_x3, _x4, _x5) {
-    return _ref5.apply(this, arguments);
+  return function parseAllAggregateData(_x4, _x5, _x6) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
@@ -13060,11 +13107,11 @@ var parseAllAggregateData = function () {
 
 // fetch the date details in data
 var updateSliderData = function () {
-  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+  var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
     var datelist;
-    return _regenerator2.default.wrap(function _callee6$(_context6) {
+    return _regenerator2.default.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             datelist = [];
 
@@ -13101,18 +13148,18 @@ var updateSliderData = function () {
               app.sliderValue = datelist[datelist.length - 1];
             });
 
-            return _context6.abrupt('return');
+            return _context7.abrupt('return');
 
           case 3:
           case 'end':
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6, this);
+    }, _callee7, this);
   }));
 
   return function updateSliderData() {
-    return _ref6.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }();
 
@@ -13133,19 +13180,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var maplib = __webpack_require__(395);
 var styles = maplib.styles;
-var getLegHTML = maplib.getLegHTML;
-var getColorFromVal = maplib.getColorFromVal;
+var getLegHTML = maplib.getLegHTML2;
+var getColorFromVal = maplib.getColorFromVal2;
 var mymap = maplib.sfmap;
 mymap.setView([37.76889, -122.440997], 13);
 
 // some important global variables.
 var API_SERVER = 'https://api.sfcta.org/api/';
 var GEO_VIEW = 'cmp_segments_master';
-var VIZ_LIST = ['ASPD'];
+var VIZ_LIST = ['ASPD', 'SPDIFFPCT'];
 var VIZ_INFO = {
   ASPD: {
     TXT: 'Auto Level-of-Service (LOS)',
-    VIEW: 'inrix_rt_daily',
+    VIEW: 'inrix_rt_weekly',
     METRIC: 'los_hcm85',
     METRIC_DESC: 'Level of Service',
     COLOR_BY_BINS: false,
@@ -13154,6 +13201,30 @@ var VIZ_INFO = {
     CHARTINFO: 'AUTO SPEED TREND (MPH):',
     CHART_PREC: 1,
     POST_UNITS: ''
+  },
+  SPDIFFPCT: {
+    TXT: 'Speed Change Relative to Pre-COVID',
+    VIEW: 'inrix_rt_weekly',
+    METRIC: 'pct_diff',
+    METRIC_DESC: 'Pct Speed Change',
+    COLOR_BY_BINS: true,
+    COLORVALS: [-50, 0, 10, 20, 30, 500],
+    COLORS: ['#3f324f', '#963d8e', '#d55175', '#f2ad86', '#ffffcc'],
+    CHARTINFO: 'AUTO SPEED TREND (MPH):',
+    CHART_PREC: 1,
+    POST_UNITS: '%'
+  },
+  SPDIFF: {
+    TXT: 'Absolute Speed Change from Pre-COVID',
+    VIEW: 'inrix_rt_weekly',
+    METRIC: 'spd_diff',
+    METRIC_DESC: 'Speed Change',
+    COLOR_BY_BINS: true,
+    COLORVALS: [-50, 0, 2, 4, 6, 8, 500],
+    COLORS: ['#c00', '#f60', '#f90', '#ff3', '#9f0', '#060'],
+    CHARTINFO: 'AUTO SPEED TREND (MPH):',
+    CHART_PREC: 1,
+    POST_UNITS: ' mph'
   }
 };
 var MISSING_COLOR = '#ccd';
@@ -13163,7 +13234,8 @@ var init_selectedViz = VIZ_LIST[0];
 var data_view = VIZ_INFO[init_selectedViz]['VIEW'];
 var selviz_metric = VIZ_INFO[init_selectedViz]['METRIC'];
 var selPeriod = 'AM';
-var aggdata_view = 'inrix_rt_daily_agg';
+var aggdata_view = 'inrix_rt_weekly_agg';
+var diffdata_view = 'inrix_rt_weeklydiff';
 var aggdata_label = 'All Segments Combined';
 var selGeoId = void 0;
 
@@ -13178,6 +13250,7 @@ var selectedSegment = void 0,
 var _segmentJson = void 0;
 var _allCmpData = void 0;
 var _aggregateData = void 0;
+var _diffData = void 0;
 
 var infoPanel = L.control();
 
@@ -13187,13 +13260,26 @@ infoPanel.onAdd = function (map) {
   return this._div;
 };
 
+function getInfoHtml(geo) {
+  var retval = '<b>' + geo.cmp_name + ' ' + geo.direction + '-bound</b><br/>' + (geo.cmp_from + ' to ' + geo.cmp_to + '<br/><hr>');
+  if (app.selectedViz != 'ASPD') {
+    var base_val = null;
+    if (geo.base_speed !== null) base_val = (Math.round(geo.base_speed * 100) / 100).toLocaleString();
+    var comp_val = null;
+    if (geo.avg_speed !== null) comp_val = (Math.round(geo.avg_speed * 100) / 100).toLocaleString();
+    var metric_val = 0;
+    if (geo.metric !== null) metric_val = (Math.round(geo.metric * 100) / 100).toLocaleString();
+
+    retval += '<b> Base Speed (pre-covid): </b>' + ('' + base_val) + ' mph<br/>' + '<b> Current Speed: </b>' + ('' + comp_val) + ' mph<br/>' + ('<b> ' + VIZ_INFO[app.selectedViz]['METRIC_DESC'] + ': </b>') + ('' + metric_val) + VIZ_INFO[app.selectedViz]['POST_UNITS'];
+  }
+
+  return retval;
+}
+
 infoPanel.update = function (geo) {
   infoPanel._div.innerHTML = '';
   infoPanel._div.className = 'info-panel';
-
-  if (geo) {
-    this._div.innerHTML = '<b>' + geo.cmp_name + ' ' + geo.direction + '-bound</b><br/>' + (geo.cmp_from + ' to ' + geo.cmp_to);
-  }
+  if (geo) this._div.innerHTML = getInfoHtml(geo);
 
   infoPanelTimeout = setTimeout(function () {
     // use CSS to hide the info-panel
@@ -13210,9 +13296,17 @@ function drawMapSegments() {
   var cleanSegments = _segmentJson.slice();
 
   var relevantRows = void 0;
-  relevantRows = _allCmpData.filter(function (row) {
-    return row.date == app.sliderValue && row.period === selPeriod;
-  });
+  if (app.selectedViz == 'ASPD') {
+    app.diffFlag = false;
+    relevantRows = _allCmpData.filter(function (row) {
+      return row.date == app.sliderValue && row.period === selPeriod;
+    });
+  } else {
+    app.diffFlag = true;
+    relevantRows = _diffData.filter(function (row) {
+      return row.period === selPeriod;
+    });
+  }
 
   var lookup = {};
   var _iteratorNormalCompletion6 = true;
@@ -13253,8 +13347,16 @@ function drawMapSegments() {
 
       if (lookup[segment.cmp_segid]) {
         segment['metric'] = lookup[segment.cmp_segid][selviz_metric];
+        if (app.selectedViz != 'ASPD') {
+          segment['base_speed'] = lookup[segment.cmp_segid]['base_speed'];
+          segment['avg_speed'] = lookup[segment.cmp_segid]['avg_speed'];
+        }
       } else {
         segment['metric'] = null;
+        if (app.selectedViz != 'ASPD') {
+          segment['base_speed'] = null;
+          segment['avg_speed'] = null;
+        }
       }
     }
   } catch (err) {
@@ -13336,6 +13438,7 @@ function highlightSelectedSegment() {
       if (e.feature.cmp_segid === selGeoId) {
         e.setStyle(styles.popup);
         selectedSegment = e;
+        popSelSegment.setContent(getInfoHtml(e.feature));
         return;
       }
     } catch (error) {}
@@ -13368,7 +13471,7 @@ function showSegmentDetails(geo, latlng) {
   // show popup
   var popupText = '<b>' + geo.cmp_name + ' ' + geo.direction + '-bound</b><br/>' + (geo.cmp_from + ' to ' + geo.cmp_to);
 
-  popSelSegment = L.popup().setLatLng(latlng).setContent(popupText).addTo(mymap);
+  popSelSegment = L.popup().setLatLng(latlng).setContent(infoPanel._div.innerHTML).addTo(mymap);
 
   // Revert to overall chart when no segment selected
   popSelSegment.on('remove', function (e) {
@@ -13386,7 +13489,8 @@ function showVizChartForSelectedSegment() {
 
   var metric_col = selviz_metric;
   // show actual speeds in chart, not A-F LOS categories
-  if (selviz_metric == 'los_hcm85') metric_col = 'avg_speed';
+  //if ((selviz_metric == 'los_hcm85') || (selviz_metric == 'pct_diff')) metric_col = 'avg_speed';
+  metric_col = 'avg_speed';
 
   if (_selectedGeo) {
     var segmentData = _allCmpData.filter(function (row) {
@@ -13411,7 +13515,9 @@ function buildChartHtmlFromCmpData() {
     var maxHeight = 0;
 
     var metric_col = selviz_metric;
-    if (selviz_metric == VIZ_INFO['ASPD']['METRIC']) metric_col = 'avg_speed';
+    metric_col = 'avg_speed';
+    /*if ((selviz_metric == VIZ_INFO['ASPD']['METRIC']) || (selviz_metric == VIZ_INFO['SPDIFF']['METRIC']))
+      metric_col = 'avg_speed';*/
 
     var _iteratorNormalCompletion8 = true;
     var _didIteratorError8 = false;
@@ -13478,11 +13584,12 @@ function buildChartHtmlFromCmpData() {
 
     maxHeight = maxHeight <= 30 ? 30 : 70;
 
-    // use maxHeight for ASPD and TSPD; use auto for other metrics
+    // use maxHeight for ASPD and SPDIFF; use auto for other metrics
     var scale = 'auto';
-    if (app.selectedViz == 'ASPD' || app.selectedViz == 'TSPD') {
+    /*if (app.selectedViz == 'ASPD' || app.selectedViz == 'SPDIFF') {
       scale = maxHeight;
-    }
+    }*/
+    scale = maxHeight;
 
     new Morris.Line({
       data: data,
@@ -13504,13 +13611,13 @@ function buildChartHtmlFromCmpData() {
     ykey_tmp = ['art', 'fwy'];
     lab_tmp = ['Arterial', 'Freeway'];
     new Morris.Line({
-      data: _aggregateData[app.selectedViz][selPeriod],
+      data: _aggregateData['ASPD'][selPeriod],
       element: 'longchart',
       gridTextColor: '#aaa',
       hideHover: true,
       labels: lab_tmp,
       lineColors: ['#f66', '#99f'],
-      postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
+      postUnits: VIZ_INFO['ASPD']['POST_UNITS'],
       xkey: 'date',
       xLabelAngle: 45,
       ykeys: ykey_tmp,
@@ -13548,8 +13655,8 @@ function sliderChanged(thing) {
 
 function clickViz(chosenviz) {
   app.selectedViz = chosenviz;
-  app.chartTitle = VIZ_INFO[chosenviz]['CHARTINFO'];
 
+  app.chartTitle = VIZ_INFO[chosenviz]['CHARTINFO'];
   data_view = VIZ_INFO[chosenviz]['VIEW'];
   selviz_metric = VIZ_INFO[chosenviz]['METRIC'];
 
@@ -13615,7 +13722,8 @@ var app = new Vue({
     sliderValue: 0,
     timeSlider: timeSlider,
     vizlist: VIZ_LIST,
-    vizinfo: VIZ_INFO
+    vizinfo: VIZ_INFO,
+    diffFlag: false
   },
   watch: {
     sliderValue: sliderChanged
