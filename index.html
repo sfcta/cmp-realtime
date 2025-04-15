@@ -9,7 +9,7 @@
 
   <title>
     
-      COVID-Era Congestion Tracker &middot; SFCTA Prospector
+      San Francisco Congestion Dashboard &middot; SFCTA Prospector
     
   </title>
 
@@ -123,7 +123,7 @@
   <div id="panel" v-bind:class="{ shrunken: isPanelHidden}">
       <div id="preheader">
         <hr/>
-        <h3 class="apptitle">COVID-ERA CONGESTION TRACKER</h3>
+        <h3 class="apptitle">SAN FRANCISCO CONGESTION DASHBOARD</h3>
         <div id="helpbar">
             <button class="ui mini right labeled icon violet button"
                     v-on:click="clickToggleHelp">
@@ -132,7 +132,7 @@
             </button>
             &nbsp;
             <button class="ui mini right labeled icon violet button"
-                    v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')">
+                    v-on:click="this.window.open('https://www.sfcta.org/projects/congestion-management-program#sfcongestion','_blank')">
                     <i class="arrow right icon"></i>
                     Learn More
             </button>
@@ -222,16 +222,11 @@
 
   <div id="helpbox" v-if="showHelp" class="ui segment">
   <div v-cloak> <!-- hides everything until Vue finished loading -->
-        <h2 style="margin-bottom:0px;">COVID-Era Congestion Tracker</h2>
+        <h2 style="margin-bottom:0px;">San Francisco Congestion Dashboard</h2>
         <hr style="margin-bottom:5px;margin-top:5px"/>
-        Explore how congestion in San Francisco has changed since the March 2020 shelter-in-place order. 
-		Automobile Level-of-Service (LOS) and Vehicle Miles Traveled (VMT) per mile are presented for key segments in the transportation network. 
-		In addition, changes in these metrics relative to pre-COVID conditions can be viewed.</br>
-        The LOS are calculated using speed data from INRIX Roadway Analytics. Speeds are monthly averages calculated using
-        data from Tuesday through Thursday of each week. 
-		VMT estimates are derived using imputed vehicle volumes from observed speeds and Volume Delay Functions (VDF). 
-		Total peak period VMT for key segments is expanded to Daily Citywide estimate by applying expansions factors derived from historic Caltrans VMT estimated for San Francisco.
-		The data on this website are updated every month.
+        Explore monthly changes in congestion and vehicle miles traveled (VMT) in San Francisco. Automobile Level-of-Service (LOS) and Vehicle Miles Traveled (VMT) per mile are presented for key segments in the transportation network. In addition, changes in these metrics relative to pre-COVID conditions can be viewed.</br>
+        LOS is calculated using automobile speed data from INRIX Roadway Analytics. Speeds are monthly averages calculated using data from Tuesday through Thursday of each week.	VMT estimates are derived using imputed vehicle volumes from observed speeds and Volume Delay Functions (VDF). Total peak period VMT for key segments is expanded to Daily Citywide estimate by applying expansions factors derived from historic Caltrans VMT estimated for San Francisco. The data on this website are updated every month.</br>
+        Also see the <a href="https://cmp.sfcta.org">Congestion Management Program Map</a> to explore biennial changes in automobile congestion and transit speeds in San Francisco on the Congestion Management Program road network.
         
         <ul>
         <li><b>Auto Level-of-Service (LOS)</b> grades road segments by vehicle delay with "A" describing free flow,
@@ -267,7 +262,7 @@
                   Download data (.zip)
           </button-->
 
-          <button v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')"
+          <button v-on:click="this.window.open('https://www.sfcta.org/projects/congestion-management-program#sfcongestion','_blank')"
                   class="small ui right floated basic violet button"
                   style="margin-right:5px">
                   Learn more&hellip;
